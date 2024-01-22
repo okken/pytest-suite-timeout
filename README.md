@@ -6,6 +6,22 @@ Really though, it's: if the timeout expires, no new tests are started.
 
 ----
 
+## A use case
+
+Works great in conjunction with [pytest-repeat](https://github.com/pytest-dev/pytest-repeat).
+
+Say your debugging a flaky test and just want to run it a bunch of times, but not longer than say 10 minuts.
+
+After installing both `pytest-repeat` and `pytest-suite-timeout` you can say:
+
+```
+$ pytest test_something.py::test_func --count=1000 --suite-timeout=10
+```
+
+That will run a test 1000 times, if that's less than 10 minutes.
+If it takes longer than 10 minutes, it will exit pytest after 10 minutes-ish.
+
+
 ## Installation
 
 From PyPI:

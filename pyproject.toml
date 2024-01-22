@@ -1,10 +1,10 @@
 [project]
-name = "pytest-check"
+name = "pytest-suite-timeout"
 authors = [{name = "Brian Okken"}]
 readme = "README.md"
 license = {file = "LICENSE.txt"}
 description = "A pytest plugin for ensuring max suite time"
-version = "0.0.1"
+version = "0.0.2"
 requires-python = ">=3.7"
 classifiers = [
     "License :: OSI Approved :: MIT License",
@@ -26,4 +26,4 @@ build-backend = "flit_core.buildapi"
 name = "pytest_suite_timeout"
 
 [tool.flit.sdist]
-include = ["changelog.md", "tests", "tox.ini"]
+include = ["CHANGEs.md", "tests", "tox.ini"]

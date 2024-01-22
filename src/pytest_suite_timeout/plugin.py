@@ -21,7 +21,7 @@ def pytest_configure(config):
         _expire_time = time.time() + (_minutes * 60)
 
 
-def pytest_runtest_call(item):
+def pytest_runtest_logfinish(nodeid, location):
     if _expire_time and _expire_time < time.time():
         pytest.exit(f"suite-timeout: {_minutes} minutes exceeded",
                     returncode=0)
