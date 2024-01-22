@@ -1,0 +1,29 @@
+[project]
+name = "pytest-check"
+authors = [{name = "Brian Okken"}]
+readme = "README.md"
+license = {file = "LICENSE.txt"}
+description = "A pytest plugin for ensuring max suite time"
+version = "0.0.1"
+requires-python = ">=3.7"
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Framework :: Pytest" ,
+]
+dependencies = ["pytest>=7.0.0"]
+
+[project.urls]
+Home = "https://github.com/okken/pytest-suite-timeout"
+
+[project.entry-points.pytest11]
+pytest_suite_timeout = "pytest_suite_timeout.plugin"
+
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.module]
+name = "pytest_suite_timeout"
+
+[tool.flit.sdist]
+include = ["changelog.md", "tests", "tox.ini"]
