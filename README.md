@@ -10,7 +10,7 @@ Really though, it's: if the timeout expires, no new tests are started.
 
 Works great in conjunction with [pytest-repeat](https://github.com/pytest-dev/pytest-repeat).
 
-Say your debugging a flaky test and just want to run it a bunch of times, but not longer than say 10 minuts.
+Say your debugging a flaky test and just want to run it a bunch of times, but not longer than say 10 minutes.
 
 After installing both `pytest-repeat` and `pytest-suite-timeout` you can say:
 
