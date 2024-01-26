@@ -3,26 +3,28 @@ pytest_plugins = "pytester",
 
 def test_no_timeout(pytester):
     pytester.makepyfile("""
-        def test_fast():
+        import pytest
+        
+        @pytest.mark.parametrize('i', range(10)) 
+        def test_fast(i):
            ...
     """)
-    result = pytester.runpytest('--count', '10')
+    result = pytester.runpytest()
     result.assert_outcomes(passed=10)
 
 
 def test_timeout(pytester):
     pytester.makepyfile("""
         import time
-        
-        def test_slow():
-            time.sleep(0.1)
+        import pytest
+       
+        @pytest.mark.parametrize('i', range(10)) 
+        def test_slow(i):
+            time.sleep(1)
     """)
-    result = pytester.runpytest('--count', '10', '--suite-timeout', '0.006', '-v')
+    result = pytester.runpytest('--suite-timeout', '0.5')
     result.stdout.fnmatch_lines([
-        '* suite-timeout: 0.006 minutes exceeded !!*',
+        '*!! suite-timeout: 0.5 sec exceeded !!*',
     ])
     outcomes = result.parseoutcomes()
-    # 0.006 * 60 = 0.36 seconds.
-    # 3 will finish, then the 4th will start
-    # before the 5th can be started, a timeout will be noticed
-    assert outcomes['passed'] == 4
+    assert outcomes['passed'] == 1
